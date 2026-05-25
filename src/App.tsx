@@ -192,21 +192,40 @@ function App() {
           {/* Prázdny stav */}
           {messages.length === 0 && (
             <div className="animate-fade-in flex flex-col items-center justify-center pt-24 text-center">
-              {/* Dekoratívny orb */}
-              <div className="relative mb-8">
+              {/* Maskot */}
+              <div className="animate-float relative mb-8">
+                <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Žiara za maskotom */}
+                  <circle cx="48" cy="48" r="44" fill="var(--accent-soft)" />
+                  {/* Hlava */}
+                  <rect x="20" y="18" width="56" height="52" rx="22" fill="var(--accent)" />
+                  {/* Anténka */}
+                  <circle cx="48" cy="14" r="4" fill="var(--accent)" />
+                  <rect x="46" y="14" width="4" height="8" rx="2" fill="var(--accent)" />
+                  {/* Oči – biely základ */}
+                  <ellipse cx="36" cy="42" rx="7" ry="7.5" fill="white" />
+                  <ellipse cx="60" cy="42" rx="7" ry="7.5" fill="white" />
+                  {/* Oči – zreničky */}
+                  <ellipse cx="37.5" cy="43" rx="3.5" ry="4" fill="#1a1815" />
+                  <ellipse cx="61.5" cy="43" rx="3.5" ry="4" fill="#1a1815" />
+                  {/* Odlesky v očiach */}
+                  <circle cx="39" cy="41" r="1.5" fill="white" />
+                  <circle cx="63" cy="41" r="1.5" fill="white" />
+                  {/* Úsmev */}
+                  <path d="M38 54 C42 60, 54 60, 58 54" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Líčka */}
+                  <ellipse cx="28" cy="52" rx="5" ry="3.5" fill="var(--accent-hover)" opacity="0.45" />
+                  <ellipse cx="68" cy="52" rx="5" ry="3.5" fill="var(--accent-hover)" opacity="0.45" />
+                  {/* Uši / bočné prvky */}
+                  <rect x="12" y="36" width="8" height="16" rx="4" fill="var(--accent)" />
+                  <rect x="76" y="36" width="8" height="16" rx="4" fill="var(--accent)" />
+                </svg>
+                {/* Jemná žiara */}
                 <div
-                  className="animate-float h-20 w-20 rounded-full"
-                  style={{
-                    background: `radial-gradient(circle at 30% 30%, var(--accent), var(--accent-hover))`,
-                    boxShadow: `0 0 60px var(--accent-glow), 0 0 120px var(--accent-soft)`,
-                  }}
-                />
-                <div
-                  className="absolute inset-0 h-20 w-20 rounded-full"
+                  className="absolute inset-0 rounded-full"
                   style={{
                     animation: "pulse-ring 3s ease-in-out infinite",
-                    border: "1px solid var(--accent)",
-                    opacity: 0.3,
+                    boxShadow: "0 0 40px var(--accent-glow)",
                   }}
                 />
               </div>
