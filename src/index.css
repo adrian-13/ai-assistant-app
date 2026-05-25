@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+
+/* CSS premenné pre tému */
+:root {
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f1ede8;
+  --bg-tertiary: #e8e3dc;
+  --bg-glass: rgba(241, 237, 232, 0.7);
+  --text-primary: #1a1815;
+  --text-secondary: #6b6560;
+  --text-muted: #9e9590;
+  --accent: #c8702a;
+  --accent-hover: #b5621f;
+  --accent-soft: rgba(200, 112, 42, 0.1);
+  --accent-glow: rgba(200, 112, 42, 0.25);
+  --bubble-user: #1a1815;
+  --bubble-user-text: #faf8f5;
+  --bubble-assistant: #f1ede8;
+  --border: rgba(26, 24, 21, 0.08);
+  --border-strong: rgba(26, 24, 21, 0.15);
+  --shadow-sm: 0 1px 3px rgba(26, 24, 21, 0.04);
+  --shadow-md: 0 4px 16px rgba(26, 24, 21, 0.06);
+  --shadow-lg: 0 8px 32px rgba(26, 24, 21, 0.08);
+  --grain-opacity: 0.03;
+}
+
+.dark {
+  --bg-primary: #121110;
+  --bg-secondary: #1c1a18;
+  --bg-tertiary: #262320;
+  --bg-glass: rgba(28, 26, 24, 0.75);
+  --text-primary: #f0ece7;
+  --text-secondary: #9e9590;
+  --text-muted: #6b6560;
+  --accent: #e0943e;
+  --accent-hover: #eba44f;
+  --accent-soft: rgba(224, 148, 62, 0.12);
+  --accent-glow: rgba(224, 148, 62, 0.2);
+  --bubble-user: #e0943e;
+  --bubble-user-text: #121110;
+  --bubble-assistant: #1c1a18;
+  --border: rgba(240, 236, 231, 0.06);
+  --border-strong: rgba(240, 236, 231, 0.12);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --grain-opacity: 0.04;
+}
+
+/* Základné štýly */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Jemná textúra zrna na pozadí */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  z-index: 50;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Vlastný scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Animácie */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.2; }
+  100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease both;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Štýly pre markdown obsah */
+.markdown-body {
+  line-height: 1.65;
+  font-size: 0.9375rem;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+  line-height: 1.3;
+}
+
+.markdown-body h1 { font-size: 1.5rem; }
+.markdown-body h2 { font-size: 1.25rem; }
+.markdown-body h3 { font-size: 1.1rem; }
+
+.markdown-body p {
+  margin-bottom: 0.625rem;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+.markdown-body li {
+  margin-bottom: 0.2rem;
+}
+
+.markdown-body code {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  padding: 0.125rem 0.4rem;
+  border-radius: 0.3rem;
+  font-size: 0.85em;
+  font-family: "DM Mono", "Fira Code", monospace;
+}
+
+.markdown-body pre {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-bottom: 0.625rem;
+}
+
+.markdown-body pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+
+.markdown-body a:hover {
+  opacity: 0.8;
+}
+
+.markdown-body blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.625rem;
+  font-style: italic;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+/* Prechod medzi dark/light */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+/* Výnimka pre animované prvky */
+.no-theme-transition,
+.no-theme-transition * {
+  transition-property: none !important;
+}
