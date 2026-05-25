@@ -105,84 +105,82 @@ function App() {
   return (
     <div className="grain flex h-full flex-col" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
 
-      {/* Hlavička – glassmorphism */}
+      {/* Hlavička */}
       <header
-        className="relative z-10 flex items-center justify-between px-5 py-3.5"
+        className="relative z-10 flex items-center justify-between px-4 py-3"
         style={{
           background: "var(--bg-glass)",
           backdropFilter: "blur(16px) saturate(1.4)",
           WebkitBackdropFilter: "blur(16px) saturate(1.4)",
           borderBottom: "1px solid var(--border)",
-          boxShadow: "var(--shadow-sm)",
         }}
       >
-        <div className="flex items-center gap-4">
-          {/* Logo / Názov */}
-          <h1
-            className="text-xl tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            AI Asistent
-          </h1>
+        {/* Názov */}
+        <h1
+          className="text-lg tracking-tight"
+          style={{ fontFamily: "'Instrument Serif', serif" }}
+        >
+          AI Asistent
+        </h1>
 
+        {/* Akcie */}
+        <div className="flex items-center gap-1">
           {/* Nová konverzácia */}
           <button
             onClick={handleNewConversation}
-            className="group flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-medium"
+            title="Nová konverzácia"
+            className="flex h-9 w-9 items-center justify-center rounded-xl"
             style={{
-              background: "var(--accent-soft)",
               color: "var(--accent)",
               transition: "all 0.2s ease",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--accent-glow)";
-              e.currentTarget.style.boxShadow = "0 0 0 1px var(--accent)";
+              e.currentTarget.style.background = "var(--accent-soft)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--accent-soft)";
-              e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.background = "transparent";
             }}
             aria-label="Nová konverzácia"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14M5 12h14" />
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1" />
             </svg>
-            Nová konverzácia
+          </button>
+
+          {/* Oddeľovač */}
+          <div className="mx-1 h-5 w-px" style={{ background: "var(--border-strong)" }} />
+
+          {/* Dark mode prepínač */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            title={darkMode ? "Svetlý režim" : "Tmavý režim"}
+            className="flex h-9 w-9 items-center justify-center rounded-xl"
+            style={{
+              color: "var(--text-secondary)",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--bg-tertiary)";
+              e.currentTarget.style.color = "var(--text-primary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.color = "var(--text-secondary)";
+            }}
+            aria-label="Prepnúť tmavý/svetlý režim"
+          >
+            {darkMode ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
           </button>
         </div>
-
-        {/* Dark mode prepínač */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.8125rem] font-medium"
-          style={{
-            background: "var(--bg-tertiary)",
-            color: "var(--text-secondary)",
-            border: "1px solid var(--border)",
-            transition: "all 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "var(--border-strong)";
-            e.currentTarget.style.color = "var(--text-primary)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--text-secondary)";
-          }}
-          aria-label="Prepnúť tmavý/svetlý režim"
-        >
-          {darkMode ? (
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="5" />
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-            </svg>
-          ) : (
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-          )}
-          {darkMode ? "Svetlý" : "Tmavý"}
-        </button>
       </header>
 
       {/* Zoznam správ */}
