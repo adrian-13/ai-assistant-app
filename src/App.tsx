@@ -90,7 +90,6 @@ function App() {
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
-      inputRef.current?.focus();
     }
   }
 
@@ -118,7 +117,7 @@ function App() {
         {/* Názov */}
         <h1
           className="text-lg tracking-tight"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
+          style={{ fontWeight: 600 }}
         >
           AI Asistent
         </h1>
@@ -143,7 +142,9 @@ function App() {
             aria-label="Nová konverzácia"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1" />
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <line x1="12" y1="8" x2="12" y2="14" />
+              <line x1="9" y1="11" x2="15" y2="11" />
             </svg>
           </button>
 
@@ -229,7 +230,7 @@ function App() {
               </div>
               <h2
                 className="mb-2 text-2xl"
-                style={{ fontFamily: "'Instrument Serif', serif", color: "var(--text-primary)" }}
+                style={{ fontWeight: 600, color: "var(--text-primary)" }}
               >
                 Ako vám môžem pomôcť?
               </h2>
@@ -363,9 +364,7 @@ function App() {
             }}
           />
           <div className="flex items-center justify-between px-3 pb-2.5 pt-1">
-            <span className="pl-1 text-xs" style={{ color: "var(--text-muted)" }}>
-              Shift + Enter pre nový riadok
-            </span>
+            <span />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}

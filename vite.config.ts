@@ -11,11 +11,14 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "AI Asistent",
-        short_name: "AI Chat",
+        short_name: "AI Asistent",
         description: "Chat aplikácia s AI asistentom",
-        theme_color: "#1e293b",
-        background_color: "#0f172a",
+        theme_color: "#121110",
+        background_color: "#121110",
         display: "standalone",
+        orientation: "portrait",
+        start_url: "/",
+        scope: "/",
         icons: [
           {
             src: "pwa-192x192.png",
@@ -27,7 +30,16 @@ export default defineConfig({
             sizes: "512x512",
             type: "image/png",
           },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
         ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
       },
     }),
   ],
