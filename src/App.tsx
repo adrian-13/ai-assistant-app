@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import Markdown from "react-markdown";
+import ReloadPrompt from "./ReloadPrompt";
 
 // Typy pre správy v chate
 interface Message {
@@ -396,6 +397,7 @@ function App() {
           </div>
         </form>
       </div>
+      <ReloadPrompt />
     </div>
   );
 }
